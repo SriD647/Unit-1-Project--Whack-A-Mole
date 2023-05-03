@@ -106,7 +106,7 @@ button:hover {
     grid-template-columns: repeat(3,1fr);
     margin-bottom: 10px;
     margin-top: -50px;
-    cursor: none;
+    /* cursor: none; */
 }
 
 .location {
