@@ -1,7 +1,8 @@
 const state = {
-  message: "Welcome to Whack-A-Mole",
-  scoreGame: "Moles whacked: 0",
-  counter: "Countdown: 10"
+  message: "",
+  scoreGame: "",
+  counter: ""
+
 }
 
 
@@ -26,10 +27,13 @@ let titleEl=document.getElementById('title');
 
 let scoreGame=0;
 let time=0;
-let currentTime;
-let currentCircle=0;
-let pointLocked= false;
+let currentTime=10;
+let currentCircle;
+let pointLocked= true;
 let alreadyStart=false;
+let score=0;
+let timeTimer;
+let timer;
 
 /*------------------------state variables----------------------------- */
 window.addEventListener('mousemove', moveMouse);
@@ -69,62 +73,77 @@ function disappearMallet() {
     mouse.classList.remove('design');
 }
 
+function init() {
+    state.message= "Welcome to Whack-A-Mole"
+    state.scoreGame= "Moles whacked: 0"
+    state.counter= "Countdown: 10"
+  
+}
 
 function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter
+ 
 
 }
 
-// render();
-
-
-startEl.addEventListener('click', begin)
-
-/* Place mole in random location */
-function showMole () {
-  circles.forEach(function(circle) {
-    circle.classList.remove('mole');
-  });
-  
-  pointLocked=false;
-
-  let randomCircle= circles[Math.floor(Math.random()*9)];
-  randomCircle.classList.add('mole');
-
-  currentCircle=randomCircle.id;
-
-}
 
 /* Begin showMole function and countdown function */
 function begin() {
   alreadyStart=true;
   while (alreadyStart) {
+      // currentCircle=randomCircle.id;
       startEl.removeEventListener ('click', begin);
-      score=0;
       currentTime=10;
-      Timer=setInterval(showMole, 630);
+      timer=setInterval(showMole, 750);
       timeTimer=setInterval(countDown, 1000);
       alreadyStart=false;
   }    
 }
 
+startEl.addEventListener('click', begin)
+
+
+/* Place mole in random location */
+function showMole () {
+  
+  circles.forEach(function(circle) {
+    circle.classList.remove('mole');
+  });
+  
+  
+  // pointLocked=false;
+
+  let randomCircle= circles[Math.floor(Math.random()*9)];
+  randomCircle.classList.add('mole');
+  pointLocked=false;
+  currentCircle=randomCircle.id;
+
+}
+
+function circleClick(e) {
+  if(e.target.id==currentCircle) {
+    // pointLocked=true;
+      if(!pointLocked) {        
+        state.scoreGame= `Moles whacked: ${++score}`;
+        console.log(score);
+        // scoreCount.innerText= state.scoreGame;
+        render();
+        e.target.classList.remove('mole');
+        pointLocked= true;
+      }
+      // else if (alreadyStart=false) {
+      //   state.scoreGame= `Moles whacked: ${score}`;
+      // }
+  }
+}
 
 /* Capture clicks and update scoreboard */
 circles.forEach(function (circle) {
-  circle.addEventListener('click', ()=>{
-  if(circle.id==currentCircle) {
-      if(pointLocked) return;
-      score++;
-      state.scoreGame= `Moles whacked: ${score}`;
-      // scoreCount.innerText= `Moles whacked: ${score}`;
-      render();
-      circle.classList.remove('mole');
-      pointLocked= true;
-  }
-  });
+  circle.addEventListener('click', circleClick)
 });
+
 
 function countDown () {
   currentTime--;
@@ -132,22 +151,26 @@ function countDown () {
   render();
   // timeLeft.innerText= `Countdown: ${currentTime}`
 
-  if (currentTime== 0) {
-      startEl.addEventListener('click', begin)
-      currentTime=0;
-      clearInterval(timeTimer)
-      clearInterval(Timer)
-      if (score<13) {
-        state.message ='Game over, you lost!';
+  if (currentTime=== 0) {
+    circles.forEach(function (circle) {
+      circle.removeEventListener('click', circleClick)
+
+    })
+    // startEl.addEventListener('click', begin)
+    currentTime=0;
+    clearInterval(timeTimer)
+    clearInterval(timer)
+    if (score<13) {
+      state.message ='Game over, you lost!';
+      render();
+        // titleEl.innerText ='Game over, you lost!';
+        // startEl.removeEventListener ('click', begin);
+    }
+    if(score>=13) {
+        state.message ='Game over, you won!';
         render();
-          // titleEl.innerText ='Game over, you lost!';
-          startEl.removeEventListener ('click', begin);
-      }
-      if(score>=13) {
-          state.message ='Game over, you won!';
-          render();
-          startEl.removeEventListener ('click', begin);   
-      }
+        // startEl.removeEventListener ('click', begin);   
+    }
   }
 
 }
@@ -155,4 +178,10 @@ function countDown () {
 
 function reset() {
     location.reload();
+    // init();
+    // render();
+    /// should reset board and remove and reinitialize 
 }
+
+init();
+render();
