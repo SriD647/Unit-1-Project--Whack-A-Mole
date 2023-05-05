@@ -84,8 +84,6 @@ function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter
- 
-
 }
 
 
@@ -96,7 +94,7 @@ function begin() {
       // currentCircle=randomCircle.id;
       startEl.removeEventListener ('click', begin);
       currentTime=10;
-      timer=setInterval(showMole, 750);
+      timer=setInterval(showMole, 700);
       timeTimer=setInterval(countDown, 1000);
       alreadyStart=false;
   }    
@@ -124,18 +122,12 @@ function showMole () {
 
 function circleClick(e) {
   if(e.target.id==currentCircle) {
-    // pointLocked=true;
       if(!pointLocked) {        
         state.scoreGame= `Moles whacked: ${++score}`;
-        console.log(score);
-        // scoreCount.innerText= state.scoreGame;
         render();
         e.target.classList.remove('mole');
         pointLocked= true;
       }
-      // else if (alreadyStart=false) {
-      //   state.scoreGame= `Moles whacked: ${score}`;
-      // }
   }
 }
 
@@ -149,8 +141,6 @@ function countDown () {
   currentTime--;
   state.counter= `Countdown: ${currentTime}`
   render();
-  // timeLeft.innerText= `Countdown: ${currentTime}`
-
   if (currentTime=== 0) {
     circles.forEach(function (circle) {
       circle.removeEventListener('click', circleClick)
@@ -178,10 +168,20 @@ function countDown () {
 
 function reset() {
     location.reload();
+    // resetEl.removeEventListener('click', reset)
+    // circles.forEach(function(circle) {
+    //   circle.classList.remove('mole');
+    // });
+    // resetEl.addEventListener('click', reset)
+    
     // init();
     // render();
+    
+    
     /// should reset board and remove and reinitialize 
 }
+
+
 
 init();
 render();

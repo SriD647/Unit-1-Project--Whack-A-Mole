@@ -71,7 +71,7 @@ nav {
     transform: translate(2%, -90%);
     transition: transform .1s;
     height: 150px;
-    /* background-image: url('mallet.png'); */
+    background-image: url('mallet.png');
     background-size: 100% 100%;
     width: 140px;
     top: 100px;
@@ -106,7 +106,7 @@ button:hover {
     grid-template-columns: repeat(3,1fr);
     margin-bottom: 10px;
     margin-top: -50px;
-    /* cursor: none; */
+    cursor: none;
 }
 
 .location {
@@ -123,10 +123,8 @@ button:hover {
 .mole {
     background: url(Mole3.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 90%;
     background-position: center;
     background-color: rgb(165,85,11);
 } 
-
-
 
