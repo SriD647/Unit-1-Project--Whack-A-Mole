@@ -33,6 +33,7 @@ let alreadyStart=false;
 let score=0;
 let roundTimer;
 let moleTimer;
+let levelChosen=false;
 
 /*------------------------state variables----------------------------- */
 window.addEventListener('mousemove', moveMouse);
@@ -105,6 +106,7 @@ function chooseLevel (evt) {
   }
  console.log(state.counter)
  console.log(state.level)
+ levelChosen=true;
 }
 
 
@@ -113,7 +115,7 @@ function chooseLevel (evt) {
 function begin() {
   alreadyStart=true;
   
-  while (alreadyStart) {
+  while (alreadyStart && levelChosen) {
       // currentCircle=randomCircle.id;
       startEl.removeEventListener ('click', begin);
       currentTime=state.counter
@@ -129,6 +131,7 @@ function begin() {
       }
       roundTimer=setInterval(countDown, 1000);
       alreadyStart=false;
+      levelChosen=false;
   }    
 }
 
