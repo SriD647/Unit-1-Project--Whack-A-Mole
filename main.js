@@ -1,8 +1,8 @@
 const state = {
   message: "",
   scoreGame: "",
-  counter: ""
-
+  counter: "",
+  level: "easy"
 }
 
 
@@ -11,6 +11,7 @@ const state = {
 const mouse = document.querySelector('.mouse')
 const frameEl=document.querySelector('#frame');
 const buttnEl=document.querySelector('.buttonAll')
+const buttnLevel=document.querySelector('.buttonLevel')
 const gridEl=document.querySelector('.grid');
 
 let circles=document.querySelectorAll('.location');
@@ -25,15 +26,13 @@ let titleEl=document.getElementById('title');
 
 /*------------------------state variables----------------------------- */
 
-let scoreGame=0;
-let time=0;
 let currentTime=10;
 let currentCircle;
 let pointLocked= true;
 let alreadyStart=false;
 let score=0;
-let timeTimer;
-let timer;
+let roundTimer;
+let moleTimer;
 
 /*------------------------state variables----------------------------- */
 window.addEventListener('mousemove', moveMouse);
@@ -47,6 +46,8 @@ frameEl.addEventListener('mouseover', disappearMallet)
 buttnEl.addEventListener('mouseover', disappearMallet)
 
 resetEl.addEventListener('click', reset)
+
+buttnLevel.addEventListener('click', chooseLevel)
 
 
 /*------------------------functions----------------------------- */
@@ -76,7 +77,7 @@ function disappearMallet() {
 function init() {
     state.message= "Welcome to Whack-A-Mole"
     state.scoreGame= "Moles whacked: 0"
-    state.counter= "Countdown: 10"
+    state.counter= "Countdown: "
   
 }
 
@@ -86,16 +87,47 @@ function render() {
   timeLeft.innerText=state.counter
 }
 
+function chooseLevel (evt) {
+  state.level=evt.target.textContent.toLowerCase();
+  if(state.level==="easy") {
+   state.counter=21;
+   
+
+  }
+  if(state.level==="medium") {
+   state.counter=16;
+   
+
+  }
+  if(state.level==="hard") {
+   state.counter=11;
+
+  }
+ console.log(state.counter)
+ console.log(state.level)
+}
+
+
 
 /* Begin showMole function and countdown function */
 function begin() {
   alreadyStart=true;
+  
   while (alreadyStart) {
       // currentCircle=randomCircle.id;
       startEl.removeEventListener ('click', begin);
-      currentTime=10;
-      timer=setInterval(showMole, 700);
-      timeTimer=setInterval(countDown, 1000);
+      currentTime=state.counter
+      
+      if (state.level==="easy") {
+        moleTimer=setInterval(showMole, 950);
+
+      } else if (state.level==="medium") {
+        moleTimer=setInterval(showMole, 650);
+
+      } else if (state.level==="hard") {
+        moleTimer=setInterval(showMole, 500);
+      }
+      roundTimer=setInterval(countDown, 1000);
       alreadyStart=false;
   }    
 }
@@ -148,15 +180,15 @@ function countDown () {
     })
     // startEl.addEventListener('click', begin)
     currentTime=0;
-    clearInterval(timeTimer)
-    clearInterval(timer)
-    if (score<13) {
+    clearInterval(roundTimer)
+    clearInterval(moleTimer)
+    if (score<10) {
       state.message ='Game over, you lost!';
       render();
         // titleEl.innerText ='Game over, you lost!';
         // startEl.removeEventListener ('click', begin);
     }
-    if(score>=13) {
+    if(score>=10) {
         state.message ='Game over, you won!';
         render();
         // startEl.removeEventListener ('click', begin);   

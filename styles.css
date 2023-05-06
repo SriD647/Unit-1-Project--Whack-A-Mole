@@ -54,7 +54,8 @@ html {
 
 .buttonAll {
     margin-top: 10px;
-    margin-bottom: 35px;
+    margin-bottom: 5px;
+    margin-left: 100px;
 }
 
 nav {
@@ -97,6 +98,12 @@ button:hover {
 
 }
 
+button:active {
+    color: gainsboro
+
+}
+
+
 .mouse.active{
     transform: translate(-50%,-50%) rotate(-50deg);
 }     
@@ -104,9 +111,13 @@ button:hover {
 .grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    margin-bottom: 10px;
-    margin-top: -50px;
+    margin-bottom: 30px;
+    margin-top: 5px;
     cursor: none;
+}
+
+.buttonLevel {
+    margin-left:20px;
 }
 
 .location {
@@ -123,8 +134,10 @@ button:hover {
 .mole {
     background: url(Mole3.png);
     background-repeat: no-repeat;
-    background-size: 90%;
+    background-size: contain;
     background-position: center;
     background-color: rgb(165,85,11);
 } 
+
+
 
