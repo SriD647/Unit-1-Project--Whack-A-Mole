@@ -6,7 +6,7 @@ const state = {
 }
 
 
-/*----------------------- **** --------------------------------*/
+/*-----------------------cached elements  --------------------------------*/
 
 const mouse = document.querySelector('.mouse')
 const frameEl=document.querySelector('#frame');
@@ -35,7 +35,7 @@ let roundTimer;
 let moleTimer;
 let levelChosen=false;
 
-/*------------------------state variables----------------------------- */
+/*------------------------event listeners----------------------------- */
 window.addEventListener('mousemove', moveMouse);
 window.addEventListener('mousedown', activateMouse);
 window.addEventListener('mouseup', deactivateMouse);
@@ -51,7 +51,7 @@ resetEl.addEventListener('click', reset)
 buttnLevel.addEventListener('click', chooseLevel)
 
 
-/*------------------------functions----------------------------- */
+/*------------------------functions and logic----------------------------- */
 
 function moveMouse(e) {
   mouse.style.top = e.pageY + 'px';
