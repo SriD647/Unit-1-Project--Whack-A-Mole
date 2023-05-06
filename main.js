@@ -77,7 +77,7 @@ function disappearMallet() {
 
 function init() {
     state.message= "Welcome to Whack-A-Mole"
-    state.scoreGame= "Moles whacked: 0"
+    state.scoreGame= "Moles whacked:"
     state.counter= "Countdown: "
   
 }
