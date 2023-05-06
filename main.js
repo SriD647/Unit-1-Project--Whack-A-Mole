@@ -1,3 +1,5 @@
+/*----------------------- Gameboard --------------------------------*/
+
 const state = {
   message: "",
   scoreGame: "",
@@ -49,7 +51,7 @@ buttnEl.addEventListener('mouseover', disappearMallet)
 resetEl.addEventListener('click', reset)
 
 buttnLevel.addEventListener('click', chooseLevel)
-
+buttnLevel.addEventListener('mouseover', disappearMallet)
 
 /*------------------------functions and logic----------------------------- */
 
@@ -75,6 +77,7 @@ function disappearMallet() {
     mouse.classList.remove('design');
 }
 
+//Intialize gameboard values.
 function init() {
     state.message= "Welcome to Whack-A-Mole"
     state.scoreGame= "Moles whacked:"
@@ -82,13 +85,17 @@ function init() {
   
 }
 
+
+// Render function to update values on gameboard (countdown, score, and title).
 function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter
 }
 
+// Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
+  buttnLevel.style.textColor='gainsboro'
   state.level=evt.target.textContent.toLowerCase();
   if(state.level==="easy") {
    state.counter=21;
@@ -104,19 +111,16 @@ function chooseLevel (evt) {
    state.counter=11;
 
   }
- console.log(state.counter)
- console.log(state.level)
  levelChosen=true;
 }
 
 
 
-/* Begin showMole function and countdown function */
+// Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
 function begin() {
   alreadyStart=true;
   
   while (alreadyStart && levelChosen) {
-      // currentCircle=randomCircle.id;
       startEl.removeEventListener ('click', begin);
       currentTime=state.counter
       
@@ -124,10 +128,10 @@ function begin() {
         moleTimer=setInterval(showMole, 950);
 
       } else if (state.level==="medium") {
-        moleTimer=setInterval(showMole, 650);
+        moleTimer=setInterval(showMole, 750);
 
       } else if (state.level==="hard") {
-        moleTimer=setInterval(showMole, 500);
+        moleTimer=setInterval(showMole, 600);
       }
       roundTimer=setInterval(countDown, 1000);
       alreadyStart=false;
@@ -138,7 +142,7 @@ function begin() {
 startEl.addEventListener('click', begin)
 
 
-/* Place mole in random location */
+// Remove image of mole from last location.
 function showMole () {
   
   circles.forEach(function(circle) {
@@ -146,7 +150,7 @@ function showMole () {
   });
   
   
-  // pointLocked=false;
+  // Add image of mole to a random circle from the grid.
 
   let randomCircle= circles[Math.floor(Math.random()*9)];
   randomCircle.classList.add('mole');
@@ -155,6 +159,13 @@ function showMole () {
 
 }
 
+// Add eventlistener to each circle. Each click triggers circleClick function.
+circles.forEach(function (circle) {
+  circle.addEventListener('click', circleClick)
+});
+
+
+// Circle click function updates scoreboard and removes mole image.
 function circleClick(e) {
   if(e.target.id==currentCircle) {
       if(!pointLocked) {        
@@ -166,12 +177,9 @@ function circleClick(e) {
   }
 }
 
-/* Capture clicks and update scoreboard */
-circles.forEach(function (circle) {
-  circle.addEventListener('click', circleClick)
-});
 
 
+// Starts countdown during an active round. Renders appropriate message based on final score.
 function countDown () {
   currentTime--;
   state.counter= `Countdown: ${currentTime}`
@@ -179,44 +187,45 @@ function countDown () {
   if (currentTime=== 0) {
     circles.forEach(function (circle) {
       circle.removeEventListener('click', circleClick)
-
     })
-    // startEl.addEventListener('click', begin)
+
     currentTime=0;
     clearInterval(roundTimer)
     clearInterval(moleTimer)
     if (score<10) {
       state.message ='Game over, you lost!';
       render();
-        // titleEl.innerText ='Game over, you lost!';
-        // startEl.removeEventListener ('click', begin);
     }
     if(score>=10) {
         state.message ='Game over, you won!';
         render();
-        // startEl.removeEventListener ('click', begin);   
     }
   }
 
 }
 
 
+// Refreshes page so user can start new game.
 function reset() {
     location.reload();
-    // resetEl.removeEventListener('click', reset)
+    // // resetEl.removeEventListener('click', reset)
+    // init();
+    // alreadyStart=false;
+    // levelChosen=false;
+    
     // circles.forEach(function(circle) {
     //   circle.classList.remove('mole');
     // });
-    // resetEl.addEventListener('click', reset)
+
+    // // resetEl.addEventListener('click', reset)
+  
+    // // render();
     
-    // init();
-    // render();
     
-    
-    /// should reset board and remove and reinitialize 
+    // /// should reset board and remove and reinitialize 
 }
 
 
-
+// Initialize game board and render.
 init();
 render();

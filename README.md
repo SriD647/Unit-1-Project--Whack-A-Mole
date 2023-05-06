@@ -3,8 +3,9 @@
 # **Welcome to Whack-A-Mole**
 
 ## **Game description**
-Your lawn has been swarmed by hungry moles and the only way to get rid of them is to use a mallet and start whackin! The game board is designed to look like a section of your lawn. It has has 9 evenly sized circles in the center, from which the moles will appear and disappear at random in less than a split second. The objective of the game is for the player to whack at least 10 moles with the mallet before the 10 second countdown ends. A message will appear at the end of the round to indicate whether the player has won or lost. The game board also consists of a start button (to start a round), a reset button (to reset the game), a score board (to display current score), a timer (to show the time remaining in the round), and a cursor with the image of a mallet (used to whack the moles). There is also three buttons (easy, medium, and hard)
-to be able to choose different levels of difficulties.
+Your lawn has been swarmed by hungry moles and the only way to get rid of them is to use a mallet and start whackin! The game board is designed to look like a section of your lawn. It has has 9 evenly sized circles in the center, from which the moles will appear and disappear at random in less than a split second. The objective of the game is for the player to whack at least 10 moles with the mallet before the countdown ends. A message will appear at the end of the round to indicate whether the player has won or lost. The game board also consists of a start button (to start a round), a reset button (to reset the game), a score board (to display current score), a timer (to show the time remaining in the round), and a cursor with the image of a mallet (used to whack the moles). 
+
+There is also three buttons (easy, medium, and hard) to be able to choose from different levels of difficulties. These levels determine the length of the round and the speed of the mole. The harder the round, the greater is the speed of the mole, and lower is the length of the round. This is to make it harder to whack the moles.
 
 ## **Screenshots**
 <img src=https://i.imgur.com/A28nsQi.png width=60% height=60%>
