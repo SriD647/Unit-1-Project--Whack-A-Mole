@@ -4,7 +4,7 @@ const state = {
   message: "",
   scoreGame: "",
   counter: "",
-  level: "easy"
+  level: {}
 }
 
 
@@ -28,15 +28,38 @@ let titleEl=document.getElementById('title');
 
 /*------------------------state variables----------------------------- */
 
-let currentTime=10;
+let currentTime;
 let currentCircle;
 let pointLocked= true;
 let alreadyStart=false;
 let score=0;
-let roundTimer;
-let moleTimer;
+let points;
+let roundTime;
+let moleTime;
 let levelChosen=false;
+const levelChoice = {
+  easy: {
+    moleTimer: 900,
+    roundLength: 21,
+    roundTimer: 1000,
+    pointsNeeded: 10
 
+  },
+  medium: {
+    moleTimer: 750,
+    roundLength: 16,
+    roundTimer: 1000,
+    pointsNeeded: 10
+
+  },
+  hard: {
+    moleTimer: 550,
+    roundLength: 11,
+    roundTimer: 1000,
+    pointsNeeded: 5
+
+  }
+}
 /*------------------------event listeners----------------------------- */
 window.addEventListener('mousemove', moveMouse);
 window.addEventListener('mousedown', activateMouse);
@@ -96,21 +119,11 @@ function render() {
 // Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
   buttnLevel.style.textColor='gainsboro'
-  state.level=evt.target.textContent.toLowerCase();
-  if(state.level==="easy") {
-   state.counter=21;
+  state.level=levelChoice[evt.target.textContent.toLowerCase()];
+  
+  // currentTime=state.level.roundLength;
    
-
-  }
-  if(state.level==="medium") {
-   state.counter=16;
-   
-
-  }
-  if(state.level==="hard") {
-   state.counter=11;
-
-  }
+ 
  levelChosen=true;
 }
 
@@ -120,20 +133,14 @@ function chooseLevel (evt) {
 function begin() {
   alreadyStart=true;
   
-  while (alreadyStart && levelChosen) {
+  if (alreadyStart && levelChosen) {
       startEl.removeEventListener ('click', begin);
-      currentTime=state.counter
+      points=state.level.pointsNeeded;
+      currentTime=state.level.roundLength;
       
-      if (state.level==="easy") {
-        moleTimer=setInterval(showMole, 950);
+      moleTime=setInterval(showMole, state.level.moleTimer);
 
-      } else if (state.level==="medium") {
-        moleTimer=setInterval(showMole, 750);
-
-      } else if (state.level==="hard") {
-        moleTimer=setInterval(showMole, 600);
-      }
-      roundTimer=setInterval(countDown, 1000);
+      roundTime=setInterval(countDown,state.level.roundTimer);
       alreadyStart=false;
       levelChosen=false;
   }    
@@ -153,6 +160,7 @@ function showMole () {
   // Add image of mole to a random circle from the grid.
 
   let randomCircle= circles[Math.floor(Math.random()*9)];
+  
   randomCircle.classList.add('mole');
   pointLocked=false;
   currentCircle=randomCircle.id;
@@ -181,6 +189,7 @@ function circleClick(e) {
 
 // Starts countdown during an active round. Renders appropriate message based on final score.
 function countDown () {
+  
   currentTime--;
   state.counter= `Countdown: ${currentTime}`
   render();
@@ -190,13 +199,13 @@ function countDown () {
     })
 
     currentTime=0;
-    clearInterval(roundTimer)
-    clearInterval(moleTimer)
-    if (score<10) {
+    clearInterval(roundTime)
+    clearInterval(moleTime)
+    if (score<points) {
       state.message ='Game over, you lost!';
       render();
     }
-    if(score>=10) {
+    if(score>=points) {
         state.message ='Game over, you won!';
         render();
     }
