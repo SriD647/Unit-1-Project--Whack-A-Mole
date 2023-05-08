@@ -36,9 +36,11 @@ HTML, CSS, Javascript, and Imgur.
 * In order to start a round, please choose the level of dfficulty (easy, medium, or hard) before clicking start.
 * After a round has completed, the reset button must be clicked before the start button to initiate a new round. 
 * Clicking a mole multiple times before it can switch positions will not count. The system will only count the first click.
-* For the best experience, aim the mallet at the top of the mole's head. 
+* For the best experience, aim the mallet at the top of the mole's head.
+* Please keep audio volume to at least 50% in order to hear the audio and sound effects in the game. 
 * If your aim was correct, a sound effect of a hammer hitting will play. If it doesn't, it means the mallet did not properly hit the mole.
 * Google Chrome browser is recommended.
+
 
 Link to deploy game: TBD
 
