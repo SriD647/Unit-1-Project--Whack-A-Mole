@@ -30,17 +30,17 @@ const mouseSqueek = document.getElementById("mouseSqueek");
 
 
 const malletSound = function() {
-  audioClip.volume = 0.1;
+  audioClip.volume = 0.3;
   audioClip.play();
 };
 
 const mouseSqueekSound = function() {
-  mouseSqueek.volume = 0.015;
+  mouseSqueek.volume = 0.045;
   mouseSqueek.play();
 };
 
 const backgroundMusic = function() {
-  arcadeMusic.volume = 0.022;
+  arcadeMusic.volume = 0.1;
   arcadeMusic.play();
 };
 
