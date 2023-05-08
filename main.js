@@ -26,7 +26,23 @@ let pointer=document.querySelector('location');
 let titleEl=document.getElementById('title');
 const audioClip = document.getElementById("audioClip");
 const arcadeMusic = document.getElementById("backgroundMusic");
+const mouseSqueek = document.getElementById("mouseSqueek");
 
+
+const malletSound = function() {
+  audioClip.volume = 0.1;
+  audioClip.play();
+};
+
+const mouseSqueekSound = function() {
+  mouseSqueek.volume = 0.015;
+  mouseSqueek.play();
+};
+
+const backgroundMusic = function() {
+  arcadeMusic.volume = 0.022;
+  arcadeMusic.play();
+};
 
 /*------------------------state variables----------------------------- */
 
@@ -106,17 +122,6 @@ function disappearMallet() {
 }
 
 
-function malletSound () {
-  audioClip.volume=0.1;
-  audioClip.play();
-  
-};
-
-function backgroundMusic () {
-  arcadeMusic.volume=0.025;
-  arcadeMusic.play();
-};
-
 
 //Intialize gameboard values.
 function init() {
@@ -124,7 +129,7 @@ function init() {
     state.scoreGame= "Moles whacked:"
     state.counter= "Countdown: "
     // backgroundMusic();
-}
+};
 
 
 // Render function to update values on gameboard (countdown, score, and title).
@@ -133,7 +138,7 @@ function render() {
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter
   // backgroundMusic();
-}
+};
 
 // Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
@@ -151,11 +156,10 @@ function chooseLevel (evt) {
   
 // Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
 function begin() {
-  alreadyStart=true;
-  backgroundMusic();
-  
+  alreadyStart=true;    
   
   if (alreadyStart && levelChosen) {
+      backgroundMusic();
       startEl.removeEventListener ('click', begin);
       points=state.level.pointsNeeded;
       currentTime=state.level.roundLength;
@@ -173,17 +177,17 @@ startEl.addEventListener('click', begin)
 
 // Remove image of mole from last location.
 function showMole () {
-  
-  circles.forEach(function(circle) {
+    circles.forEach(function(circle) {
     circle.classList.remove('mole');
   });
   
   
   // Add image of mole to a random circle from the grid.
-
-  let randomCircle= circles[Math.floor(Math.random()*9)];
   
+  let randomCircle= circles[Math.floor(Math.random()*9)];
+
   randomCircle.classList.add('mole');
+  mouseSqueekSound ();
   pointLocked=false;
   currentCircle=randomCircle.id;
 
@@ -207,8 +211,6 @@ function circleClick(e) {
       }
   }
 }
-
-
 
 // Starts countdown during an active round. Renders appropriate message based on final score.
 function countDown () {
