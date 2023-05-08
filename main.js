@@ -59,24 +59,24 @@ let levelChosen=false;
 
 const levelChoice = {
   easy: {
-    moleTimer: 950,
-    roundLength: 21,
+    moleTimer: 2000,
+    roundLength: 11,
     roundTimer: 1000,
-    pointsNeeded: 13
+    pointsNeeded: 3
 
   },
   medium: {
     moleTimer: 750,
-    roundLength: 16,
+    roundLength: 11,
     roundTimer: 1000,
-    pointsNeeded: 10
+    pointsNeeded: 8
 
   },
   hard: {
     moleTimer: 550,
     roundLength: 11,
     roundTimer: 1000,
-    pointsNeeded: 5
+    pointsNeeded: 10
 
   }
 }

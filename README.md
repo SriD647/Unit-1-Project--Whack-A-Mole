@@ -3,9 +3,26 @@
 # **Welcome to Whack-A-Mole**
 
 ## **Game description**
-Your lawn has been swarmed by hungry moles who keep squeeking all day! The only way to save your lawn and your peace of mind is to pick up a mallet and start whackin! The game board is designed to look like a section of your lawn. It has has 9 evenly sized circles in the center, from which the moles will appear and disappear at random in less than a split second. The objective of the game is for the player to whack at least a sufficient amount of moles with the mallet before the countdown ends. A message will appear at the end of the round to indicate whether the player has won or lost. The game board also consists of a start button (to start a round), a reset button (to reset the game), a score board (to display current score), a timer (to show the time remaining in the round), and a cursor with the image of a mallet (used to whack the moles). 
+Your lawn has been swarmed by annoying moles who keep squeeking all day! The only way to save your lawn and your peace of mind is to pick up a mallet and start whackin! 
 
-There is also three buttons (easy, medium, and hard) to be able to choose from different levels of difficulties. These levels determine the length of the round, the speed the mole appears, and how many moles must be whacked to the win the round. The harder the round, the greater is the speed of the mole, the lower the length of the round, and the greater is the points required.
+The game board is designed to look like a section of your lawn. It has has 9 evenly sized circles in the center, from which the moles will appear and disappear at random in less than a split second. The objective of the game is for the player to whack at least a sufficient amount of moles with the mallet before the 10 second round countdown ends. A message will appear at the end of the round to indicate whether the player has won or lost. The game board also consists of a start button (to start a round), a reset button (to reset the game), a score board (to display current score), a timer (to show the time remaining in the round), a cursor with the image of a mallet (used to whack the moles), and a background image of grass. 
+
+There is also three buttons (easy, medium, and hard) to be able to choose from 3 different levels of difficulties. These levels determine the speed the mole appears and how many moles must be whacked to the win the round. The harder the round, the greater is the speed of the mole and the number of points required to win. Every round is 10 seconds long. Refer to the following chart:
+
+***Easy*** <br>
+Mole speed:           2 seconds<br>
+Points needed to win: 3 moles <br>
+
+***Medium*** <br>
+Mole speed:           750 milliseconds<br>
+Points needed to win: 8 moles <br>
+
+
+***Hard*** <br>
+Mole speed:           550 milliseconds<br>
+Points needed to win: 10 moles <br>
+
+
 
 ## **Screenshots**
 <img src=https://i.imgur.com/A28nsQi.png width=60% height=60%>
