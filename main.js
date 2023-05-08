@@ -24,6 +24,8 @@ const timeLeft= document.getElementById('timeLeft');
 const scoreCount=document.getElementById('score');
 let pointer=document.querySelector('location');
 let titleEl=document.getElementById('title');
+const audioClip = document.getElementById("audioClip");
+const arcadeMusic = document.getElementById("backgroundMusic");
 
 
 /*------------------------state variables----------------------------- */
@@ -37,12 +39,14 @@ let points;
 let roundTime;
 let moleTime;
 let levelChosen=false;
+
+
 const levelChoice = {
   easy: {
-    moleTimer: 900,
+    moleTimer: 950,
     roundLength: 21,
     roundTimer: 1000,
-    pointsNeeded: 10
+    pointsNeeded: 13
 
   },
   medium: {
@@ -66,6 +70,7 @@ window.addEventListener('mousedown', activateMouse);
 window.addEventListener('mouseup', deactivateMouse);
 
 gridEl.addEventListener('mouseover', appearMallet)
+// gridEl.addEventListener('click', malletSound)
 
 frameEl.addEventListener('mouseover', disappearMallet)
 
@@ -100,12 +105,25 @@ function disappearMallet() {
     mouse.classList.remove('design');
 }
 
+
+function malletSound () {
+  audioClip.volume=0.1;
+  audioClip.play();
+  
+};
+
+function backgroundMusic () {
+  arcadeMusic.volume=0.025;
+  arcadeMusic.play();
+};
+
+
 //Intialize gameboard values.
 function init() {
     state.message= "Welcome to Whack-A-Mole"
     state.scoreGame= "Moles whacked:"
     state.counter= "Countdown: "
-  
+    // backgroundMusic();
 }
 
 
@@ -114,6 +132,7 @@ function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter
+  // backgroundMusic();
 }
 
 // Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
@@ -129,9 +148,12 @@ function chooseLevel (evt) {
 
 
 
+  
 // Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
 function begin() {
   alreadyStart=true;
+  backgroundMusic();
+  
   
   if (alreadyStart && levelChosen) {
       startEl.removeEventListener ('click', begin);
@@ -178,6 +200,7 @@ function circleClick(e) {
   if(e.target.id==currentCircle) {
       if(!pointLocked) {        
         state.scoreGame= `Moles whacked: ${++score}`;
+        malletSound();
         render();
         e.target.classList.remove('mole');
         pointLocked= true;
@@ -217,21 +240,7 @@ function countDown () {
 // Refreshes page so user can start new game.
 function reset() {
     location.reload();
-    // // resetEl.removeEventListener('click', reset)
-    // init();
-    // alreadyStart=false;
-    // levelChosen=false;
-    
-    // circles.forEach(function(circle) {
-    //   circle.classList.remove('mole');
-    // });
 
-    // // resetEl.addEventListener('click', reset)
-  
-    // // render();
-    
-    
-    // /// should reset board and remove and reinitialize 
 }
 
 

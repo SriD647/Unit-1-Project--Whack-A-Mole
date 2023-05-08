@@ -113,7 +113,7 @@ button:active {
     grid-template-columns: repeat(3,1fr);
     margin-bottom: 30px;
     margin-top: 5px;
-    /* cursor: none; */
+    cursor: none;
 }
 
 .buttonLevel {
