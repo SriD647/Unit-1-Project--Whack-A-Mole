@@ -27,6 +27,10 @@ let titleEl=document.getElementById('title');
 const audioClip = document.getElementById("audioClip");
 const arcadeMusic = document.getElementById("backgroundMusic");
 const mouseSqueek = document.getElementById("mouseSqueek");
+const youLose = document.getElementById("youLose");
+const youWin = document.getElementById("youWin");
+
+
 
 
 const malletSound = function() {
@@ -40,9 +44,20 @@ const mouseSqueekSound = function() {
 };
 
 const backgroundMusic = function() {
-  arcadeMusic.volume = 0.18;
+  arcadeMusic.volume = 0.10;
   arcadeMusic.play();
 };
+
+const youLoseMusic= function () {
+  youLose.volume= 0.5;
+  youLose.play();
+}
+
+const youWinMusic= function () {
+  youWin.volume= 0.5;
+  youWin.play();
+}
+
 
 /*------------------------state variables----------------------------- */
 
@@ -127,8 +142,7 @@ function disappearMallet() {
 function init() {
     state.message= "Welcome to Whack-A-Mole"
     state.scoreGame= "Moles whacked:"
-    state.counter= "Countdown: "
-    // backgroundMusic();
+    state.counter= "Countdown: "    
 };
 
 
@@ -136,9 +150,9 @@ function init() {
 function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
-  timeLeft.innerText=state.counter
-  // backgroundMusic();
-};
+  timeLeft.innerText=state.counter;
+  backgroundMusic();  
+  };
 
 // Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
@@ -166,11 +180,10 @@ function begin() {
       startEl.removeEventListener ('click', begin);
       points=state.level.pointsNeeded;
       currentTime=state.level.roundLength;
-      
       moleTime=setInterval(showMole, state.level.moleTimer);
 
       roundTime=setInterval(countDown,state.level.roundTimer);
-      backgroundMusic();
+      // backgroundMusic();
       alreadyStart=false;
       levelChosen=false;
   }    
@@ -219,26 +232,26 @@ function circleClick(e) {
 }
 
 // Starts countdown during an active round. Renders appropriate message based on final score.
-function countDown () {
-
+function countDown () { 
   currentTime--;
-  state.counter= `Countdown: ${currentTime}`
+  state.counter= `Countdown: ${currentTime}`;
   render();
   if (currentTime=== 0) {
     circles.forEach(function (circle) {
       circle.removeEventListener('click', circleClick)
     })
-
-    currentTime=0;
     clearInterval(roundTime)
     clearInterval(moleTime)
     if (score<points) {
       state.message ='Game over, you lost!';
       render();
+      youLoseMusic ();
+
     }
     if(score>=points) {
         state.message ='Game over, you won!';
         render();
+        youWinMusic();
     }
   }
 
