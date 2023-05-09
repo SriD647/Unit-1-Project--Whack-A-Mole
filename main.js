@@ -30,17 +30,17 @@ const mouseSqueek = document.getElementById("mouseSqueek");
 
 
 const malletSound = function() {
-  audioClip.volume = 0.6;
+  audioClip.volume = 0.9;
   audioClip.play();
 };
 
 const mouseSqueekSound = function() {
-  mouseSqueek.volume = 0.085;
+  mouseSqueek.volume = 0.5;
   mouseSqueek.play();
 };
 
 const backgroundMusic = function() {
-  arcadeMusic.volume = 0.22;
+  arcadeMusic.volume = 0.18;
   arcadeMusic.play();
 };
 
@@ -74,7 +74,7 @@ const levelChoice = {
   },
   hard: {
     moleTimer: 550,
-    roundLength: 11,
+    roundLength: 30,
     roundTimer: 1000,
     pointsNeeded: 10
 
@@ -155,11 +155,14 @@ function chooseLevel (evt) {
 
   
 // Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
+
+startEl.addEventListener('click', begin)
+
 function begin() {
   alreadyStart=true;    
   
   if (alreadyStart && levelChosen) {
-      backgroundMusic();
+      
       startEl.removeEventListener ('click', begin);
       points=state.level.pointsNeeded;
       currentTime=state.level.roundLength;
@@ -167,16 +170,18 @@ function begin() {
       moleTime=setInterval(showMole, state.level.moleTimer);
 
       roundTime=setInterval(countDown,state.level.roundTimer);
+      backgroundMusic();
       alreadyStart=false;
       levelChosen=false;
   }    
 }
 
-startEl.addEventListener('click', begin)
+
 
 
 // Remove image of mole from last location.
 function showMole () {
+  
     circles.forEach(function(circle) {
     circle.classList.remove('mole');
   });
@@ -188,7 +193,7 @@ function showMole () {
 
   randomCircle.classList.add('mole');
   mouseSqueekSound ();
-  pointLocked=false;
+  pointLocked=false;  
   currentCircle=randomCircle.id;
 
 }
@@ -202,19 +207,20 @@ circles.forEach(function (circle) {
 // Circle click function updates scoreboard and removes mole image.
 function circleClick(e) {
   if(e.target.id==currentCircle) {
-      if(!pointLocked) {        
-        state.scoreGame= `Moles whacked: ${++score}`;
-        malletSound();
+      if(!pointLocked) {            
+        state.scoreGame= `Moles whacked: ${++score}`;        
         render();
+        malletSound();  
         e.target.classList.remove('mole');
         pointLocked= true;
+        
       }
   }
 }
 
 // Starts countdown during an active round. Renders appropriate message based on final score.
 function countDown () {
-  
+
   currentTime--;
   state.counter= `Countdown: ${currentTime}`
   render();
