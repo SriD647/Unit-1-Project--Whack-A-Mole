@@ -74,7 +74,7 @@ const levelChoice = {
   },
   hard: {
     moleTimer: 550,
-    roundLength: 30,
+    roundLength: 11,
     roundTimer: 1000,
     pointsNeeded: 10
 
