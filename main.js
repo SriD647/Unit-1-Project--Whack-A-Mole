@@ -235,7 +235,7 @@ function countDown () {
     state.message= 'Game over, you won!'
     render();       
     youWinMusic();
-    randomCircle.classList.remove('mole');
+
     
     
   }
@@ -248,7 +248,7 @@ function countDown () {
     state.message ='Game over, you lose!';
     render();
     youLoseMusic (); 
-    randomCircle.classList.remove('mole'); 
+
   }
 };
 
