@@ -226,28 +226,33 @@ function countDown () {
   backgroundMusic();
   state.counter= `Countdown: ${currentTime}`;
   render();
-  if (currentTime=== 0) {   
-    circles.forEach(function (circle) {
-      circle.removeEventListener('click', circleClick)
-    })  
-    clearInterval(roundTime)
-    clearInterval(moleTime);
-    
-    if (score<points) {
-      state.message ='Game over, you lost!';
-      render();
-      youLoseMusic ();
 
-    }
-    if(score>=points) {
-      state.message ='Game over, you won!';
-      render();
-      youWinMusic();
-    }
-   arcadeMusic.pause();
+  if(score>=points) {
+    pointLocked=true;
+    clearInterval(roundTime);
+    clearInterval(moleTime);
+    state.message= 'Game over, you won!'
+    render();    
+    arcadeMusic.pause();     
+    youWinMusic();
+    
     
   }
 
+  if (currentTime=== 0) {
+    clearInterval(roundTime);
+    clearInterval(moleTime);   
+    arcadeMusic.pause();
+    circles.forEach(function (circle) {
+      circle.removeEventListener('click', circleClick)
+    if (score<points) {
+      state.message ='Game over, you lose!';
+      render();
+      youLoseMusic ();
+  
+    }  
+    }) 
+  }
 }
 
 
