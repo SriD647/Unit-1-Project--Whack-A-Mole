@@ -234,13 +234,12 @@ function countDown () {
     clearInterval(moleTime);
     state.message= 'Game over, you won!'
     render();       
-    youWinMusic();
-
-    
-    
+    youWinMusic();      
   }
 
   if (currentTime=== 0) {
+
+    if (score< points) {
     pointLocked=true;    
     arcadeMusic.pause();
     clearInterval(roundTime);
@@ -248,6 +247,18 @@ function countDown () {
     state.message ='Game over, you lose!';
     render();
     youLoseMusic (); 
+
+    } 
+    else if(score>= points) {
+    pointLocked=true;
+    arcadeMusic.pause();  
+    clearInterval(roundTime);
+    clearInterval(moleTime);
+    state.message= 'Game over, you won!'
+    render();       
+    youWinMusic();      
+      
+    }
 
   }
 };
