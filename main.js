@@ -227,33 +227,31 @@ function countDown () {
   state.counter= `Countdown: ${currentTime}`;
   render();
 
-  if(score>=points) {
+  if(score>= points) {
     pointLocked=true;
+    
+    arcadeMusic.pause();  
     clearInterval(roundTime);
     clearInterval(moleTime);
     state.message= 'Game over, you won!'
-    render();    
-    arcadeMusic.pause();     
+    render();       
     youWinMusic();
+    randomCircle.classList.remove('mole');
     
     
   }
 
   if (currentTime=== 0) {
-    clearInterval(roundTime);
-    clearInterval(moleTime);   
+    pointLocked=true;    
     arcadeMusic.pause();
-    circles.forEach(function (circle) {
-      circle.removeEventListener('click', circleClick)
-    if (score<points) {
-      state.message ='Game over, you lose!';
-      render();
-      youLoseMusic ();
-  
-    }  
-    }) 
+    clearInterval(roundTime);
+    clearInterval(moleTime);
+    state.message ='Game over, you lose!';
+    render();
+    youLoseMusic (); 
+    randomCircle.classList.remove('mole'); 
   }
-}
+};
 
 
 // Refreshes page so user can start new game.

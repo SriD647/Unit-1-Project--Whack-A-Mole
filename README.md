@@ -38,7 +38,7 @@ HTML, CSS, Javascript, and Imgur.
 * After a round has completed, the reset button must be clicked, before choosing the difficulty and pressing the start button. 
 * Clicking a mole multiple times before it can switch positions will not count. The system will only count the first click.
 * For the best experience, aim the mallet at the center of the mole's body.
-* Please keep audio volume to at least 50% in order to hear the audio and sound effects of the game. 
+* Please keep computer audio volume to at least 40% in order to hear the audio and sound effects of the game. 
 * If your aim was correct, a sound effect of a hammer hitting will play. If it doesn't, it means the mallet did not properly hit the mole.
 * Google Chrome browser is recommended.
 
