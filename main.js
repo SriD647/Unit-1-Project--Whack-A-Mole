@@ -31,8 +31,6 @@ const youLose = document.getElementById("youLose");
 const youWin = document.getElementById("youWin");
 
 
-
-
 const malletSound = function() {
   audioClip.volume = 0.9;
   audioClip.play();
@@ -44,8 +42,10 @@ const mouseSqueekSound = function() {
 };
 
 const backgroundMusic = function() {
-  arcadeMusic.volume = 0.10;
+  arcadeMusic.volume = 0.40;
+  arcadeMusic.loop = true;
   arcadeMusic.play();
+
 };
 
 const youLoseMusic= function () {
@@ -75,23 +75,23 @@ let levelChosen=false;
 const levelChoice = {
   easy: {
     moleTimer: 2000,
-    roundLength: 11,
+    roundLength: 16,
     roundTimer: 1000,
-    pointsNeeded: 3
+    pointsNeeded: 5
 
   },
   medium: {
     moleTimer: 750,
-    roundLength: 11,
+    roundLength: 16,
     roundTimer: 1000,
-    pointsNeeded: 8
+    pointsNeeded: 12
 
   },
   hard: {
     moleTimer: 550,
-    roundLength: 11,
+    roundLength: 16,
     roundTimer: 1000,
-    pointsNeeded: 10
+    pointsNeeded: 16
 
   }
 }
@@ -100,8 +100,7 @@ window.addEventListener('mousemove', moveMouse);
 window.addEventListener('mousedown', activateMouse);
 window.addEventListener('mouseup', deactivateMouse);
 
-gridEl.addEventListener('mouseover', appearMallet)
-// gridEl.addEventListener('click', malletSound)
+gridEl.addEventListener('mouseover', appearMallet);
 
 frameEl.addEventListener('mouseover', disappearMallet)
 
@@ -137,12 +136,12 @@ function disappearMallet() {
 }
 
 
-
 //Intialize gameboard values.
 function init() {
-    state.message= "Welcome to Whack-A-Mole"
-    state.scoreGame= "Moles whacked:"
-    state.counter= "Countdown: "    
+  arcadeMusic.play();
+  state.message= "Welcome to Whack-A-Mole"
+  state.scoreGame= "Moles whacked:"
+  state.counter= "Countdown: " 
 };
 
 
@@ -151,21 +150,16 @@ function render() {
   titleEl.innerText=state.message
   scoreCount.innerText=state.scoreGame
   timeLeft.innerText=state.counter;
-  backgroundMusic();  
+
   };
 
 // Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
   buttnLevel.style.textColor='gainsboro'
   state.level=levelChoice[evt.target.textContent.toLowerCase()];
-  
-  // currentTime=state.level.roundLength;
-   
  
  levelChosen=true;
 }
-
-
 
   
 // Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
@@ -181,16 +175,11 @@ function begin() {
       points=state.level.pointsNeeded;
       currentTime=state.level.roundLength;
       moleTime=setInterval(showMole, state.level.moleTimer);
-
       roundTime=setInterval(countDown,state.level.roundTimer);
-      // backgroundMusic();
       alreadyStart=false;
       levelChosen=false;
   }    
 }
-
-
-
 
 // Remove image of mole from last location.
 function showMole () {
@@ -234,14 +223,16 @@ function circleClick(e) {
 // Starts countdown during an active round. Renders appropriate message based on final score.
 function countDown () { 
   currentTime--;
+  backgroundMusic();
   state.counter= `Countdown: ${currentTime}`;
   render();
-  if (currentTime=== 0) {
+  if (currentTime=== 0) {   
     circles.forEach(function (circle) {
       circle.removeEventListener('click', circleClick)
-    })
+    })  
     clearInterval(roundTime)
-    clearInterval(moleTime)
+    clearInterval(moleTime);
+    
     if (score<points) {
       state.message ='Game over, you lost!';
       render();
@@ -249,10 +240,12 @@ function countDown () {
 
     }
     if(score>=points) {
-        state.message ='Game over, you won!';
-        render();
-        youWinMusic();
+      state.message ='Game over, you won!';
+      render();
+      youWinMusic();
     }
+   arcadeMusic.pause();
+    
   }
 
 }
@@ -260,11 +253,12 @@ function countDown () {
 
 // Refreshes page so user can start new game.
 function reset() {
-    location.reload();
-
+  location.reload();
 }
 
 
 // Initialize game board and render.
 init();
 render();
+
+
