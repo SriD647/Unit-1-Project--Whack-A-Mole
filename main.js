@@ -138,7 +138,6 @@ function disappearMallet() {
 
 //Intialize gameboard values.
 function init() {
-  arcadeMusic.play();
   state.message= "Welcome to Whack-A-Mole"
   state.scoreGame= "Moles whacked:"
   state.counter= "Countdown: " 

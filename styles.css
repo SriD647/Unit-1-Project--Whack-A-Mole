@@ -53,10 +53,18 @@ html {
 
 
 .buttonAll {
-    margin-top: 10px;
+    margin-top: -1px;
     margin-bottom: 5px;
     margin-left: 100px;
 }
+
+.buttonLevel {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+
+}
+
 
 nav {
     justify-content: center;
@@ -111,14 +119,12 @@ button:active {
 .grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    margin-bottom: 30px;
-    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-top: -50px;
     cursor: none;
 }
 
-.buttonLevel {
-    margin-left:20px;
-}
+
 
 .location {
     width: 120px;
