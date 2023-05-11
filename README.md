@@ -47,5 +47,6 @@ Link to deploy game: TBD
 
 ## **ICE Box items**
 * Compatibility with mobile devices.
+* Better and more aesthetic CSS + styling.
 * Multiplayer mode.
 * Pause button.
