@@ -113,20 +113,25 @@ buttnLevel.addEventListener('mouseover', disappearMallet)
 
 /*------------------------functions and logic----------------------------- */
 
+// To get image of mallet to follow pointer
 function moveMouse(e) {
   mouse.style.top = e.pageY + 'px';
   mouse.style.left = e.pageX + 'px';
 }
 
+
+// To transform position of mallet when mouse is pressed down
 function activateMouse() {
   mouse.classList.add('active');
 }
 
+
+// To transform position of mallet when moues is released
 function deactivateMouse() {
   mouse.classList.remove('active');
 }
 
-
+// To add image of of mallet
 function appearMallet() {
     mouse.classList.add('design');  
 }
@@ -152,7 +157,7 @@ function render() {
 
   };
 
-// Update state.counter value (aka countdown value) based on level of difficulty chosen by user. Update levelChosen=true.
+// Update state.counter value based on level of difficulty chosen by user. Update levelChosen=true.
 function chooseLevel (evt) {
   buttnLevel.style.textColor='gainsboro'
   state.level=levelChoice[evt.target.textContent.toLowerCase()];
@@ -162,7 +167,6 @@ function chooseLevel (evt) {
 
   
 // Begin showMole function and countdown function only if alreadyStart and levelChosen are true. Change them to false at the end.
-
 startEl.addEventListener('click', begin)
 
 function begin() {
@@ -188,8 +192,7 @@ function showMole () {
   });
   
   
-  // Add image of mole to a random circle from the grid.
-  
+  // Add image of mole to a random circle from the grid.  
   let randomCircle= circles[Math.floor(Math.random()*9)];
 
   randomCircle.classList.add('mole');
