@@ -158,9 +158,9 @@ function render() {
   };
 
 // Update state.counter value based on level of difficulty chosen by user. Update levelChosen=true.
-function chooseLevel (evt) {
+function chooseLevel (e) {
   buttnLevel.style.textColor='gainsboro'
-  state.level=levelChoice[evt.target.textContent.toLowerCase()];
+  state.level=levelChoice[e.target.textContent.toLowerCase()];
  
  levelChosen=true;
 }
