@@ -113,7 +113,7 @@ button:active {
 
 
 .mouse.active{
-    transform: translate(-50px,-50px) rotate(-60deg);
+    transform: translatex(-50px) translatey(-50px) rotate(-60deg);
 }     
 
 .grid {
