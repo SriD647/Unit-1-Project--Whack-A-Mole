@@ -23,7 +23,7 @@ Mole speed:           550 milliseconds<br>
 Points needed to win: 16 moles <br>
 
 
-* In addition, during an active round there is: an arcade-game sytle background music, sounds of moles squeeking, and the sound of hammer making contact when a mole is successfully hit.
+In addition, during an active round there is: an arcade-game sytle background music, sounds of moles squeeking, and the sound of hammer making contact when a mole is successfully hit.
 
 ## **Screenshots**
 <img src=https://i.imgur.com/A28nsQi.png width=60% height=60%>
