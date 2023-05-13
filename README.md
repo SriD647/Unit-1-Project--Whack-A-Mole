@@ -28,6 +28,7 @@ In addition, during an active round there is: an arcade-game sytle background mu
 ## **Screenshots**
 <img src=https://i.imgur.com/A28nsQi.png width=60% height=60%>
 <img src=https://i.imgur.com/hBfPY7i.png width=60% height=60%>
+<img src=https://i.imgur.com/3MvLhW6.png width=60% height=60%>
 
 ## **Link to pseudocode and wireframe**
 https://excalidraw.com/#json=bz8rwW31_IlsegK3eq5Nu,CnCnEQ4Y6UyJ173NlYZfuA
