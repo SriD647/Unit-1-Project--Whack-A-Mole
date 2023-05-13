@@ -35,7 +35,7 @@ https://excalidraw.com/#json=bz8rwW31_IlsegK3eq5Nu,CnCnEQ4Y6UyJ173NlYZfuA
 
 
 ## **Technologies used**
-HTML, CSS, Javascript, and Imgur.
+HTML, CSS, Javascript, VS Code, and Imgur.
 
 ## **Getting started-Important details**
 * In order to start a round, please choose the level of dfficulty (easy, medium, or hard) before clicking start.
