@@ -47,7 +47,7 @@ HTML, CSS, Javascript, VS Code, and Imgur.
 * Google Chrome browser is recommended.
 
 
-Link to deploy game: https://whackamole.srithecoder.me
+Link to deploy game: whackamole.srithecoder.me
 
 ## **ICE Box items**
 * Compatibility with mobile devices.
