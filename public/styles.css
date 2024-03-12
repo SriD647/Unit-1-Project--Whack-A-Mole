@@ -37,12 +37,26 @@ html {
     border-radius: 30px 30px;
     margin-bottom: 15px;
     margin-top: 10px;
+    margin-right: 8px
+    
 }
 
 @media (max-width: 500px), (max-height: 700px) {
     #title {
         font-size: 30px;
         padding: 7px;
+    }
+}
+
+@media  (max-height: 579px) {
+    #title {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 378px) {
+    #title {
+        font-size: 22px;
     }
 }
 
@@ -64,16 +78,22 @@ html {
     }
 }
 
+@media  (max-height: 579px) {
+    .main h2 {
+        font-size: 13px;
+        padding: 5px 2px;;
+    }
+}
+
 .buttonAll {
     margin-top: 0px;
     margin-bottom: 20px;
-    margin-left: 90px;
+    margin-left: 80px;
 }
 
 .buttonLevel {
     margin-top: -10px;
-    margin-bottom: 5px;
-    margin-left: 20px;
+    margin-left: 23px;
 
 }
 
@@ -111,6 +131,7 @@ button{
     font-style: bold;
     width: 131px;
     margin-top: 0px;
+    margin-right: 5px;
 } 
 
 
@@ -125,6 +146,13 @@ button:active {
 
 }
 
+#start {
+    margin-right:20px;
+    margin-left: 10px;
+}
+
+
+
 @media (max-width: 500px), (max-height: 700px) {
     button {
         padding: 5px 2px;
@@ -132,6 +160,27 @@ button:active {
         width: 100px;
     }
 }
+/* 
+@media  (max-height: 579px) {
+    button {
+        font-size: 9px;
+        width: 70px;
+    }
+} */
+
+@media (max-width: 500px), (max-height: 700px) {
+    .buttonAll {
+        margin-left: 60px;
+    }
+}
+
+@media  (max-width: 407px) {
+    .button {
+        width: 65px;
+    }
+}
+
+
 
 
 .mouse.active{
@@ -163,6 +212,22 @@ button:active {
     .location {
         width: 100px;
         height: 100px;
+        
+    }
+}
+
+/* @media  (max-height: 579px) {
+    .location {
+        width: 80px;
+        height: 80px;
+    }
+} */
+
+
+@media (max-width: 434px), (max-height: 579px) {
+    .location{
+        width: 70px;
+        height: 70px;
     }
 }
 
@@ -174,3 +239,9 @@ button:active {
     background-color: rgb(165,85,11);
 } 
 
+@media (max-width: 277px) {
+    .buttonAll,
+    .buttonLevel {
+        display: block;
+    }
+}
